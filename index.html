@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Test app</title>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script> 
+</head>
+
+<body>
+
+
+		<!-- Header-->
+		<div class="container">
+			<div class="col-12">
+			  <img src="walnut.JPG" alt="Bright green walnut leaves on tree">
+			  <div class=center>
+			   <p>SUMMER IS HERE!</p>
+			  </div>
+		    </div>
+		</div>
+		
+
+        <!-- Paragraph after the header-->
+    <div class="grid">
+
+		<div class="row">
+			<div class="col-12">
+			  <p id="par"> {{text}} </p>
+		    </div>
+		</div>
+        
+
+        <!-- Form with 3 steps-->
+		<div class="row">
+			<div class="col-12">
+			  <form id="app" class="form">
+                
+                <!-- Step 1 -->
+			  	<section v-if="step == 1">
+			  		<h6><span v-for="e in error">{{ e }}</span></h6>
+			  		<input  class="inputForm" v-model="form.email" type="email" name="email" placeholder="Email Address" size="40">
+			  		<button class="button" v-if="step != totalsteps" @click.prevent="nextStep">Next step</button>
+			  	</section>
+                <!-- Step 2 -->
+			  	<section v-if="step == 2">
+			  		<h6><span v-for="e in error">{{ e }}</span></h6>
+			  		<input class="inputForm" v-model="form.name" type="text" name="name" placeholder="Name">
+			  		<input class="inputForm" v-model="form.postcode" type="text" name="postcode" placeholder="Post code">
+			  		<button class="button" id="button" v-if="step != totalsteps" @click.prevent="nextStep" >Next step</button>
+			  	</section>
+                <!-- Step 3 -->
+			  	<section v-if="step == 3">
+			  	    <h5><span>Thank you for filling out your information details.</span></h5>                    
+			  	    <h6>Your details are: {{form.email}}, {{form.name}}, {{form.postcode}}.</h6>
+			  	</section>
+			 	
+			  </form>
+		    </div> 
+		</div> 
+		<br>
+
+        
+        <!-- 3 x random text -->
+		<div class="row">
+			<div class="col-4 box">
+			  <h3>Random text 1</h3>
+			  <p id="random">{{ text }}</p>
+		    </div>
+
+		    <div class="col-4 box">
+			  <h3>Random text 2</h3>
+			  <p id="randomTwo">{{ text }}</p>
+		    </div>
+
+		    <div class="col-4 box">
+			  <h3>Random text 3</h3>
+			  <p id="randomThree">{{ text }}</p>
+		    </div>
+        </div>
+
+	</div>
+
+    <script>
+    	var paragraph = new Vue ({
+            el: '#par',
+            data: {
+  	        text: 'Vestibulum eget consectetur ante, quis auctor nunc. Vivamus porttitor faucibus purus, eget venenatis est egestas id. Donec dolor elit, pellentesque a ullamcorper ac, efficitur et ipsum. Phasellus bibendum sed erat at tempus. Aliquam erat volutpat. Ut eget posuere arcu. Donec porttitor consequat nisi et blandit. Fusce nisl odio, aliquet eu ornare vel, luctus sit amet tortor. Quisque pellentesque condimentum ante ut iaculis. Sed sed orci non felis cursus feugiat vel non urna.s',
+                  }
+        });
+        
+        var randomText = new Vue ({
+            el: '#random',
+            data: {
+  	        text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sed nisl magna. Nulla at nulla non neque mollis varius eu ut eros. Sed ac dui finibus, semper nisi id, venenatis elit. Nulla felis lectus, ultrices vel molestie sodales, pellentesque quis velit. Nunc sed eros dolor. Proin eu luctus velit. Aliquam interdum eu nisl id ornare. Curabitur tincidunt mi ac libero tincidunt, non pellentesque nibh suscipit. Sed auctor libero vehicula odio pellentesque, non suscipit tortor ornare. Curabitur placerat leo nisi, a consequat leo pellentesque ac. Nam vel porta justo.',
+  	            }
+        });
+
+        var randomText2 = new Vue ({
+            el: '#randomTwo',
+            data: {
+  	        text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sed nisl magna. Nulla at nulla non neque mollis varius eu ut eros. Sed ac dui finibus, semper nisi id, venenatis elit. Nulla felis lectus, ultrices vel molestie sodales, pellentesque quis velit. Nunc sed eros dolor. Proin eu luctus velit. Aliquam interdum eu nisl id ornare. Curabitur tincidunt mi ac libero tincidunt, non pellentesque nibh suscipit. Sed auctor libero vehicula odio pellentesque, non suscipit tortor ornare. Curabitur placerat leo nisi, a consequat leo pellentesque ac. Nam vel porta justo.',
+  	            }
+        });
+
+        var randomText3 = new Vue ({
+            el: '#randomThree',
+            data: {
+  	        text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus sed nisl magna. Nulla at nulla non neque mollis varius eu ut eros. Sed ac dui finibus, semper nisi id, venenatis elit. Nulla felis lectus, ultrices vel molestie sodales, pellentesque quis velit. Nunc sed eros dolor. Proin eu luctus velit. Aliquam interdum eu nisl id ornare. Curabitur tincidunt mi ac libero tincidunt, non pellentesque nibh suscipit. Sed auctor libero vehicula odio pellentesque, non suscipit tortor ornare. Curabitur placerat leo nisi, a consequat leo pellentesque ac. Nam vel porta justo.',
+  	            }
+        });
+
+        var appForm = new Vue ({
+
+        	el: '#app',
+        	data: {
+
+        		step: 1,
+        		totalsteps: 3,
+        		error: [],
+
+        		form: {
+        			email: null,
+        			name: null,
+        			postcode: null,
+        		}
+
+        	},
+       
+        	methods: {
+
+        		nextStep: function()
+        		{
+
+        			if (this.step == 1){
+        				if(!this.form.email){  
+        					this.error = 'Please fill out your email address.';
+        					return false;
+        				}
+        			}
+                 
+                    this.error = null; 
+
+
+                    if (this.step == 2){
+        				if(!this.form.name){   
+        					this.error = 'Please fill out your name.';
+        					return false;
+        				}
+        				if(!this.form.postcode){   
+        					this.error = 'Please fill out your post code.';
+        					return false;
+        				}
+
+        			}
+                 
+                     this.error = null; 
+
+                 this.step++;
+        			
+        		},
+
+
+            },
+
+        });
+    </script> 
+
+
+
+
+
+
+
+</body>
+</html>
