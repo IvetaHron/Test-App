@@ -6,27 +6,20 @@
 	box-sizing: border-box;
 }
 
-@media only screen and (max-width: 300px){ 
-	.row,.col-4,.col-12 {
-
-		 width: 100%;
-         margin-top: 0;
-	}
-}
-.grid {
-    margin: 0 auto;
-    max-width: 1200px;
+@media screen and (min-width: 600px ){
+  [class*="col-"] {
     width: 100%;
+  }
 }
 
-.row{
-	width: 100%;
-	margin-bottom: 20px;
-    display: flex;
-    padding-right: 50px;
-    padding-left: 50px;
+  /* For mobile phones: Mobile first design */
+  [class*="col-"] {
+    width: 100%;
+  }
 
-}
+/* For desktop */
+@media only screen and (min-width: 768px){
+
 .col-1{
 	width: 8.33%;
 }
@@ -35,15 +28,18 @@
 }
 .col-3{
 	width: 24.99%;
+	
 }
 .col-4{
 	width: 33.32%;
+	
 }
 .col-5{
 	width: 41.65%;
 }
 .col-6{
 	width: 49.98%;
+
 }
 .col-7 {
     width: 58.33%;
@@ -69,14 +65,32 @@
     width: 100%;
 }
 
-p,h3 {
-	margin: 20px;
 }
+
+.grid {
+    margin: 0 auto;
+    max-width: 1200px;
+    width: 100%;
+}
+
+.row{
+    width: 100%;
+    margin-bottom: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    padding-right: 50px;
+    padding-left: 50px;
+
+}
+
 
 img { 
   width: 100%; 
   height: auto;
-
+  padding-right: 7px;
+  padding-left: 7px;
+  object-fit: cover; 
+	
 }
 
 .container {
@@ -100,13 +114,16 @@ img {
 .box {
 	background-color: #169c16;
 	margin-right: 20px;
+	margin-bottom: 20px;
 	text-align: center;
+	padding: 20px;
 }
 
 .button{
     border: 2px solid #00b300;
     border-radius: 4px;
     padding: 10px;
+    background-color: #00b300;
 
 }
 
